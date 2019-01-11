@@ -16,7 +16,7 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
   email = StringField("Email", validators=[DataRequired(), Email()])
   username = StringField("Username", validators=[DataRequired()])
-  password = PasswordField("Password", validators=[DataRequired(), EqualTo("password_confirm"), message="Passwords must match."])
+  password = PasswordField("Password", validators=[DataRequired(), EqualTo("password_confirm", message="Passwords must match.")])
   password_confirm = PasswordField("Confirm Password", validators=[DataRequired()])
   submit = SubmitField("Register")
 
@@ -33,7 +33,7 @@ class UpdateUserForm(FlaskForm):
   username = StringField("Username", validators=[DataRequired()])
   picture = FileField("Update Profile Picture", validators=[FileAllowed(["jpg", "png"])])
   submit = SubmitField("Update")
-  
+
   def check_email(self, field):
     if User.query.filter_by(email=field.data).first():
       raise ValidationError("Your email has been registered already.")
