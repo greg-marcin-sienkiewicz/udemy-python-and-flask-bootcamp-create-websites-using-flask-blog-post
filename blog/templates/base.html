@@ -26,7 +26,13 @@
   {% if messages %}
     <div class="container">
       {% for message in messages %}
+        {% if message.startswith('error') %}
+        <div class="alert alert-danger" role="alert">
+        {% else  %}
+        <div class="alert alert-primary" role="alert">
+        {% endif %}
         {{ message }}
+        </div>
       {% endfor %}
     </div>
   {% else %}
