@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}social-company-blog{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{ url_for('core.index') }}">
+    <img src="{{ url_for('static', filename='b-solid.svg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+    Blog
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('core.index') }}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('core.info') }}">Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="container">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="container"><br></div>
+  {% endif %}
+  {% endwith %}
+</div>
+{% endblock %}
