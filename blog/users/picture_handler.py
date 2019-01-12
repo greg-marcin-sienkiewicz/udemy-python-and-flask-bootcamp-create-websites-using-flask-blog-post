@@ -4,6 +4,7 @@ from PIL import Image
 from flask import url_for, current_app
 
 def add_profile_pic(pic_upload, username):
+  print(f"add_profile_pic> pic_upload: '{pic_upload}' \t username: '{username}'")
   filename = pic_upload.filename
   ext_type = filename.split(".")[-1]
   storage_filename = str(username) + "." + ext_type

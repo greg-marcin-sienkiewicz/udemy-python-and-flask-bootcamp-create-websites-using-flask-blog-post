@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div align="center">
+          <h1 class="display-4">Account page for <strong>{{ current_user.username }}</strong></h1>
+          <br>
+          <img src="{{ url_for('static', filename=profile_image) }}" alt="Profile Image" width="200" height="200" class="img-thumbnail">
+          <br><br>
+      </div>
+    </div>
+    <div class="container">
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.email) }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.picture) }}
+        {{form.submit(class_="btn btn-primary")}}
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
