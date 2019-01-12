@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">{% if title %}{{ title }} {% else %} Create {% endif %} Post</h1>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.title) }}
+        {{ wtf.form_field(form.text) }}
+        {{ form.submit(class_="btn btn-primary")}}
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
