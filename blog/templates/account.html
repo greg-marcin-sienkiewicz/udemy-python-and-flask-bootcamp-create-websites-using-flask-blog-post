@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="container">
-      <form method="POST">
+      <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         {{ wtf.form_field(form.email) }}
         {{ wtf.form_field(form.username) }}
