@@ -5,11 +5,46 @@
 
   <div class="jumbotron">
     <h1 class="display-4">SOCIAL-COMPANY-BLOG</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <p class="lead">A simple Blog post web app, to play around with Flask.</p>
     <hr class="my-4">
     <a class="btn btn-primary btn-lg" href="{{ url_for('users.login') }}" role="button">Login</a>
     <a class="btn btn-secondary btn-lg" href="{{ url_for('users.register') }}" role="button">Register</a>
   </div>
 
+  <div class="container">
+    <div class="card-group">
+        {% for post in blog_posts.items %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+                <a href="{{ url_for('blog_post.blog_post', blog_post_id=post.id) }}">{{ post.title }}</a>
+            </h5>
+            <p class="card-text">{{ post.text }}.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Published on {{ post.date.strftime("%Y-%m-%d") }} by <a href="{{ url_for('users.user_post', username=post.author.username) }}">{{ post.author.username }}</a></small>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+      <br>
+      <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            {% for page_num in blog_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+              {% if blog_posts.page == page_num %}
+              <li class="page-item disabled">
+                <a class="page-link"}}" href="{{ url_for('core.index', page=page_num) }}">{{ page_num }}</a>
+              </li>
+              {% else %}
+              <li class="page-item">
+                  <a class="page-link" href="{{url_for('core.index', page=page_num)}}">{{ page_num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+      </nav>
+    </div>
+  </div>
 </div>
 {% endblock %}
